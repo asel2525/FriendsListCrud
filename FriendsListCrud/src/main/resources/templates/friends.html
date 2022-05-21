@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Friend Management System</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-dark bg-primary navbar-expand-sm">
+
+    <a class="navbar-brand" href="#">Friends Management System</a>
+
+
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav ">
+            <li class="nav-item ">
+                <a class="nav-link " th:href="@{/friends/new}">Add new</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{http://localhost:8080/}">Main Page</a>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+
+
+<div class ="container bg-image"
+     style="background-image: url('https://static01.nyt.com/images/2022/05/18/well/09Well-Friendship/09Well-Friendship-articleLarge-v2.jpg?quality=75&auto=webp&disable=upscale');
+height: 100vh" >
+    <div class = "row">
+        <h1> List Friends </h1>
+    </div>
+
+    <div class = "row">
+        <div class = "col-lg-3">
+            <a th:href = "@{/friends/new}" class = "btn btn-primary btn-sm mb-3"> Add Friend</a>
+        </div>
+    </div>
+    <table class = "table table-striped table-bordered">
+        <thead class = "table-dark">
+        <tr>
+            <th> Friend First Name</th>
+            <th> Friend Last Name</th>
+            <th> Friend Email </th>
+            <th> Friend Address </th>
+            <th> Friend Age </th>
+            <th> Actions </th>
+        </tr>
+        </thead>
+        <div class="white-text">
+            <tbody >
+            <tr th:each = "friend: ${friends}" >
+                <td th:text = "${friend.firstName}" ></td>
+                <td th:text = "${friend.lastName}"></td>
+                <td th:text = "${friend.email}"></td>
+                <td th:textfield = "${friend.address}"></td>
+                <td th:text = "${friend.age}"></td>
+                <td>
+                    <a th:href = "@{/friends/edit/{id}(id=${friend.id})}"
+                       class = "btn btn-primary">Update</a>
+
+                    <a th:href = "@{/friends/{id}(id=${friend.id})}"
+                       class = "btn btn-danger">Delete</a>
+
+                </td>
+            </tr>
+            </tbody>
+        </div>
+
+
+    </table>
+
+</div>
+</body>
+</html>
